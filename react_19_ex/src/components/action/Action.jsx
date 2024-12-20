@@ -1,4 +1,16 @@
 import React ,{useState}from 'react';
+import {useFormStatus} from 'react-dom';
+
+
+const SubmitButton = () => {
+  const {pending} =useFormStatus();
+
+  return(
+    <button type='submit' disabled={pending}>
+      {pending? 'Submitting...': 'Submit'}
+    </button>
+  )
+}
 
 const PostForm = ({ addPost }) => {
   const formAction = async (formData)=> {
@@ -15,9 +27,7 @@ const PostForm = ({ addPost }) => {
         type='text'
         name='title'
       />
-      <button type='submit'>
-        Submit
-      </button>
+      <SubmitButton/>
     </form>
   )
 };
